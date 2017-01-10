@@ -3,23 +3,28 @@ import Reactor from './Reactor';
 import Bank from './Bank';
 import Board from './Board';
 
-var bank, board;
 
 function Game(){
   
   function start(){
-    bank = new Bank();
-    board = new Board();
+    this.bank = new Bank();
+    this.board = new Board();
+    this.players = [];
+    
     console.log('Well, the game has started');
   }
 
 
-  let GameAPI = {
+  return {
     start,
+
+    bank: this.bank,
+    board: this.board,
   };
-  return GameAPI;
 }
 
-export default Game();
+var game = new Game();
+
+export default game;
 
 
