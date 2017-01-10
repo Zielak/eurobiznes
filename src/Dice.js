@@ -34,4 +34,4 @@
 
   global.Dice = Dice;
 
-})(window);
+}
