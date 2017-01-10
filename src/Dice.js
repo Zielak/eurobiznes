@@ -1,24 +1,14 @@
-(function(global) {
-  'use strict';
 
-  function Die(faces){
-    this.faces = faces;
-  }
-  Die.prototype.roll = function roll(){
-    return Math.ceil( (Math.random() * this.faces-1) + 1);
-  };
-  
-
-
-  function Dice(dice, faces){
+export default class Dice {
+  constructor(dice, faces){
     this.dice = [];
     
     for (let i = 0, len = dice; i < len; i++) {
       this.dice[i] = new Die(faces);
     }
   }
-  
-  Dice.prototype.roll = function roll(){
+
+  roll(){
     let sum = 0;
     let dice = [];
     this.dice.forEach( (die, i) => {
@@ -30,8 +20,17 @@
       sum: sum,
       dice: dice,
     };
-  };
+  }
+}
 
-  global.Dice = Dice;
+class Die {
+  
+  constructor(faces){
+    this.faces = faces;
+  }
+
+  roll(){
+    return Math.ceil( (Math.random() * this.faces-1) + 1);
+  }
 
 }
