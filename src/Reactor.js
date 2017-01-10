@@ -14,29 +14,26 @@ export default class Reactor {
    */
   register(variable, value){
 
-    data[variable] = {
+    this.data[variable] = {
       oldValue : undefined,
       value : value,
       observers : {}
     };
 
-    function getter(){
-      return data[variable].value;
-    }
-    function setter(newValue){
-      if(data[variable].value === newValue){
-        return;
-      }
-      
-      data[variable].oldValue = data[variable].value;
-      data[variable].value = newValue;
-      
-      fire(variable, data[variable].value, data[variable].oldValue);
-    }
-
     Object.defineProperty(this, variable, {
-      get : getter,
-      set : setter,
+      get : function getter(){
+        return this.data[variable].value;
+      },
+      set : function setter(newValue){
+        if(this.data[variable].value === newValue){
+          return;
+        }
+        
+        this.data[variable].oldValue = this.data[variable].value;
+        this.data[variable].value = newValue;
+        
+        fire(variable, this.data[variable].value, this.data[variable].oldValue);
+      },
     });
   
     return this;
@@ -58,11 +55,11 @@ export default class Reactor {
 
     thisObj = thisObj || undefined;
     
-    data[variable].observers[callback] = function(newValue, oldValue){
+    this.data[variable].observers[callback] = function(newValue, oldValue){
       callback(newValue, oldValue);
     }.bind(thisObj);
     
-    fire(variable, data[variable].value, data[variable].oldValue);
+    fire(variable, this.data[variable].value, this.data[variable].oldValue);
 
     return this;
   }
@@ -98,7 +95,7 @@ export default class Reactor {
    * @return {object} this
    */
   unwatch(variable, callback){
-    data[variable].observers = filterObject(data[variable].observers, function(item) {
+    this.data[variable].observers = filterObject(this.data[variable].observers, function(item) {
       if (item !== callback) {
         return item;
       }
@@ -118,13 +115,13 @@ export default class Reactor {
   fire(variable, newValue, oldValue){
     var callback;
 
-    for (var key in data[variable].observers) {
+    for (var key in this.data[variable].observers) {
       // skip loop if the property is from prototype
-      if (!data[variable].observers.hasOwnProperty(key)){
+      if (!this.data[variable].observers.hasOwnProperty(key)){
         continue;
       }
 
-      callback = data[variable].observers[key];
+      callback = this.data[variable].observers[key];
 
       if(typeof callback === 'function'){
         callback(newValue, oldValue);

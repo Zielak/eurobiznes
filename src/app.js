@@ -1,13 +1,12 @@
 
 import Game from './Game';
-import Rules from './Rules';
 
-console.clear();
+((global) => {
 
-var game = new Game(Rules);
+  console.clear();
 
-window.game = game;
+  gameStartBtn.addEventListener('click', (e)=>{
+    Game.start();
+  });
 
-gameStartBtn.addEventListener('click', (e)=>{
-  game.start();
-});
+})(window);

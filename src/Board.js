@@ -11,8 +11,7 @@ export default class Board extends Reactor{
     this.redChangeCards = [];
     this.blueChangeCards = [];
 
-    this.fields = [];
-    generateFields(this.fields);
+    this.fields = Fields();
 
     this.countries = [];
 
@@ -25,19 +24,12 @@ export default class Board extends Reactor{
   }
 
   pickBlueChance(){
-    pickChanceCard(this.blueChangeCards);
+    return pickChanceCard(this.blueChangeCards);
   }
 
 
 
 
-}
-
-function generateFields(fields){
-  for(let f in Fields()){
-    fields.push(f);
-  }
-  return fields;
 }
 
 function pickChanceCard(array){
@@ -45,5 +37,6 @@ function pickChanceCard(array){
 
   array.push(card);
 
+  console.log(card);
   return card;
 }

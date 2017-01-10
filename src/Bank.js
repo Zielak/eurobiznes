@@ -1,5 +1,6 @@
 
 
+
 export default class Bank {
 
   constructor(){
@@ -9,6 +10,7 @@ export default class Bank {
   }
 
   get HOUSE(){return 'house';}
+  get HOTEL(){return 'hotel';}
   get MONEY(){return 'money';}
   get PLAYER(){return 'player';}
 
@@ -16,9 +18,9 @@ export default class Bank {
   give( what, where, value ){
     
     switch( what ){
-      case HOUSE:
+      case this.HOUSE:
 
-      case MONEY:
+      case this.MONEY:
         giveMoney( where, value );
     }
 

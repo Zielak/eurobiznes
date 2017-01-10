@@ -3,17 +3,23 @@ import Reactor from './Reactor';
 import Bank from './Bank';
 import Board from './Board';
 
-export default class Game extends Reactor {
+var bank, board;
 
-  constructor(){
-    super();
+function Game(){
+  
+  function start(){
+    bank = new Bank();
+    board = new Board();
+    console.log('Well, the game has started');
   }
 
-  start(){
 
-    this.bank = new Bank();
-    this.board = new Board();
-    console.log('whoops');
-  }
-
+  let GameAPI = {
+    start,
+  };
+  return GameAPI;
 }
+
+export default Game();
+
+
