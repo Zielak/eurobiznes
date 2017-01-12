@@ -6,7 +6,12 @@ import Game from './Game';
   console.clear();
 
   gameStartBtn.addEventListener('click', (e)=>{
-    Game.start();
+
+    let players = parseInt(prompt('how many players'));
+
+    Game.start({
+      players: players,
+    });
   });
 
 })(window);
