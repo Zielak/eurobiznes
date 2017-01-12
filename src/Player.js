@@ -1,15 +1,15 @@
 
 import Reactor from './Reactor';
 
-export default class Player extends Reactor {
+export default class Player {
 
   constructor(name, pawn){
-    super();
+    this.state = new Reactor();
     this.name = name;
     this.pawn = pawn;
     
-    register('money', 0);
-    watch('money', moneyWatcher, this);
+    this.state.register('money', 0);
+    this.state.watch('money', moneyWatcher, this);
   }
 
 }

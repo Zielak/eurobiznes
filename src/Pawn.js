@@ -1,14 +1,14 @@
 
 import Reactor from './Reactor';
 
-export default class Pawn extends Reactor {
+export default class Pawn {
    
   constructor(color){
-    super();
+    this.state = new Reactor();
 
     this.color = color;
 
-    register('field', undefined);
+    this.state.register('field', undefined);
   }
 
 }

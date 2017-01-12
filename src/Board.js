@@ -3,10 +3,10 @@ import Field from './Field';
 import Fields from './Fields';
 import Reactor from './Reactor';
 
-export default class Board extends Reactor{
+export default class Board {
 
   constructor(){
-    super();
+    this.state = new Reactor();
     
     this.redChangeCards = [];
     this.blueChangeCards = [];

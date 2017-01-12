@@ -35,7 +35,7 @@ export default class Reactor {
         fire(variable, this.data[variable].value, this.data[variable].oldValue);
       },
     });
-  
+
     return this;
 
   }

@@ -1,6 +1,4 @@
 
-
-
 export default class Bank {
 
   constructor(){
@@ -19,7 +17,7 @@ export default class Bank {
     
     switch( what ){
       case this.HOUSE:
-
+      
       case this.MONEY:
         giveMoney( where, value );
     }
